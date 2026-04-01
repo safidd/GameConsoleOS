@@ -1,9 +1,0 @@
-{
-  "pid": 3,
-  "name": "SaveThread",
-  "priority": 2,
-  "memory_required": 64,
-  "cpu_time": 2,
-  "burst_time": 5,
-  "state": "NEW"
-}
