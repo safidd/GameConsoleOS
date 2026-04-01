@@ -1,0 +1,9 @@
+{
+  "pid": 2,
+  "name": "DownloadMgr",
+  "priority": 1,
+  "memory_required": 128,
+  "cpu_time": 2,
+  "burst_time": 5,
+  "state": "NEW"
+}
