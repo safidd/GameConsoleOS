@@ -72,6 +72,4 @@ Processes represent real game console tasks:
 - **SaveThread** (priority 2) — saves game data, triggers file I/O
 - **ScreenshotService** (priority 1) — background screenshot capture
 
-## 👥 Team
-
-Group of 3 — Acıbadem University, Operating Systems Course
+## 👥 Team: Safiye Demirkıran, Fatıma Betül Zorlu, Mina Narman
