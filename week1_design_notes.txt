@@ -1,0 +1,20 @@
+Storage Simulation: 
+ We will use a nested Python dictionary to simulate our disk.
+ The keys will be the directory paths, and the values will be the files.
+ This is logical because searching a dictionary in Python is O(1) time complexity, making our simulated I/O very fast.
+Directory Structure: We will use a hierarchical structure: /system (for OS logs) and /saves (for the game data).
+File Metadata (File Control Block): Every file object will have three exact attributes:
+ name: The string identifier.
+ data: The actual string payload (e.g., "Level 5, 100 Gold").
+ is_locked: A boolean (True/False). 
+
+
+The Buffer: A shared Python list with a maximum size of 5 slots.
+The Mutex (Lock): A single key that only one thread can hold at a time.
+Producer Rule: Before writing to the buffer, it must acquire the Mutex. If the buffer is full, it must release the Mutex and wait.
+Consumer Rule: Before reading from the buffer to save the file, it must acquire the Mutex. If the buffer is empty, it releases the Mutex and waits.
+
+
+The GameConsoleOS is a specialized mini operating system simulator designed to manage resources for gaming workloads. 
+Because gaming requires high-performance rendering and background state saving without interrupting gameplay, the OS architecture prioritizes strict concurrency controls and non-blocking I/O. 
+The system features a hierarchical file system isolated by component, a round-robin scheduler to maintain UI responsiveness, and a robust memory manager capable of gracefully handling exhaustion under heavy gaming loads.
