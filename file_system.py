@@ -104,3 +104,14 @@ class FileSystem:
         del self.disk[path][filename]
         print(f"[File System] File '{filename}' successfully deleted from '{path}'.")
         return True
+    
+    def list_files(self):
+        print("\n[File System] Current Directory Structure:")
+        for path, files in self.disk.items():
+            print(f"  {path}/")
+            if not files:
+                print("    (empty)")
+            for filename, f_obj in files.items():
+                locked = "(LOCKED)" if f_obj.is_locked else ""
+                print(f"    - {filename} [{f_obj.size} bytes] {locked}")
+        print()

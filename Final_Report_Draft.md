@@ -6,7 +6,9 @@ The GameConsoleOS is a specialized mini operating system simulator designed to m
 ---
 
 ## 2. Architecture Diagram
-*(Placeholder: Insert an image or ASCII flow diagram showing the Scheduler, Memory Manager, File System, and the Producer-Consumer threads interacting.)*
+![System Architecture](image.png)
+
+![Background Save Sequence](image-1.png)
 
 ---
 
@@ -67,7 +69,3 @@ While the GameConsoleOS performs well under baseline conditions, doubling the sy
 Given more development time, we would implement the following architectural upgrades:
 1. **Dynamic Buffer Sizing:** Instead of a hardcoded 5-slot buffer, the OS could monitor memory availability and dynamically expand the `SaveGameBuffer` size during high-render periods to prevent the game thread from blocking.
 2. **Multi-Level Feedback Queue (MLFQ):** Replacing our Round Robin scheduler with an MLFQ would allow the OS to auto-detect I/O-bound processes (like the Save Thread) and automatically boost their priority, helping to clear the concurrency buffer faster without manual priority assignments.
-
-![alt text](image.png)
-
-![alt text](image-1.png)

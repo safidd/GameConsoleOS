@@ -132,22 +132,21 @@ class GameConsoleShell:
         if not args:
             print("  Usage: mkfile <filename>")
             return
-        dummy = PCB(pid=0, name="Shell", priority=1, memory_required=0)
-        self.fs.create(args[0], dummy)
+        # Defaulting shell creations to the /saves directory
+        self.fs.create_file("/saves", args[0], data="")
 
     def cmd_write(self, args):
         if len(args) < 2:
             print("  Usage: write <filename> <data>")
             return
         dummy = PCB(pid=0, name="Shell", priority=1, memory_required=0)
-        self.fs.write(args[0], " ".join(args[1:]), dummy)
+        self.fs.write_file("/saves", args[0], " ".join(args[1:]), process=dummy)
 
     def cmd_read(self, args):
         if not args:
             print("  Usage: read <filename>")
             return
-        dummy = PCB(pid=0, name="Shell", priority=1, memory_required=0)
-        self.fs.read(args[0], dummy)
+        self.fs.read_file("/saves", args[0])
 
     def cmd_ls(self, args):
         self.fs.list_files()
