@@ -1,3 +1,5 @@
+import time
+from pcb import ProcessState
 class File:
     def __init__(self, name, data=""):
         self.name = name
@@ -45,7 +47,7 @@ class FileSystem:
         print(f"[File System] Read '{filename}' successfully. Size: {target_file.size} bytes.")
         return target_file.data
 
-    def write_file(self, path, filename, new_data):
+    def write_file(self, path, filename, new_data, process=None):
         if path not in self.disk:
             print(f"[File System Error] Cannot write. Directory '{path}' does not exist.")
             return False
@@ -63,11 +65,25 @@ class FileSystem:
         target_file.is_locked = True
         print(f"[File System] Acquired lock. Writing to '{filename}'...")
         
+        # --- WEEK 3 CROSS-COMPONENT INTEGRATION ---
+        if process:
+            process.state = ProcessState.BLOCKED
+            print(f"[OS] Process {process.pid} is BLOCKED waiting for File I/O.")
+            
+            # Simulate the slow hardware I/O
+            time.sleep(1) 
+            
         target_file.data = new_data
         target_file.size = len(new_data)
         
         target_file.is_locked = False
         print(f"[File System] Write complete and lock released. New size: {target_file.size} bytes.")
+        
+        # Wake the process back up
+        if process:
+            process.state = ProcessState.READY
+            print(f"[OS] I/O complete. Process {process.pid} is READY.")
+            
         return True
 
     def delete_file(self, path, filename):

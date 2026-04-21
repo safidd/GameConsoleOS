@@ -18,6 +18,9 @@ This project simulates a fictional game console OS with four core subsystems:
 | `scheduler.py` | FIFO baseline scheduler |
 | `rr_scheduler.py` | Round Robin scheduler with I/O blocking |
 | `memory_manager.py` | Memory allocator with exhaustion handling |
+| `file_system.py` | Dictionary-based hierarchical file system with mutex locks |
+| `concurrency.py` | Producer-Consumer bounded buffer for background saving |
+| `test_concurrency.py` | Live demonstration of thread blocking and synchronization |
 | `main.py` | Full simulation — runs all subsystems together |
 | `starvation_demo.py` | Demonstrates starvation in FIFO vs Round Robin |
 
@@ -40,6 +43,7 @@ python3 starvation_demo.py
 python3 scheduler.py
 python3 rr_scheduler.py
 python3 memory_manager.py
+python3 test_concurrency.py
 ```
 
 ## 🔄 Simulation Phases
@@ -63,6 +67,7 @@ Memory exhaustion handler kills lowest priority processes until enough memory is
 | Scheduler | Round Robin | FIFO / MLFQ | Fairness over throughput |
 | Memory eviction | Priority-based | LRU / Random | Predictable behavior |
 | I/O handling | BLOCKED state | Busy waiting | CPU efficiency |
+| Concurrency | Bounded Buffer & Mutex | Unbounded Buffer | Prevent memory exhaustion |
 
 ## 🎮 Theme
 
